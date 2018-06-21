@@ -1,0 +1,56 @@
+{
+  "name": "universal",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node start.js",
+    "dev": "NODE_ENV=development PORT=8000 TZ='America/Chicago' nodemon start.js",
+    "test": "NODE_ENV=test PORT=8001 TZ='America/Chicago' mocha dist/test -t 10000",
+    "build": "babel -d dist src",
+    "watch": "babel --watch -d dist src --ignore src/frontend | ts '[%Y-%m-%d %H:%M:%S]'",
+    "webpack": "webpack --watch --progress",
+    "server": "webpack-dev-server"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "express": "^4.16.3",
+    "ignore-styles": "^5.0.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8"
+  },
+  "standard": {
+    "globals": [
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "before",
+      "after",
+      "Backbone",
+      "_",
+      "$",
+      "csrf",
+      "Storage",
+      "sessionStorage",
+      "pug",
+      "fetch",
+      "React",
+      "__INITIAL_STATE__"
+    ]
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
