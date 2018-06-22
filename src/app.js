@@ -6,12 +6,15 @@ import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import App from './components/App.js'
 import storeFactory from './store'
+import bodyParser from 'body-parser'
+import router from './router'
+import initialState from './initialState'
 
 const fileAssets = express.static(
   path.join(__dirname, '../public')
 )
 
-const serverStore = storeFactory(true, {})
+const serverStore = storeFactory(true, initialState)
 
 const logger = (req, res, next) => {
   console.log(`${req.method} request for '${req.url}'`)
@@ -71,5 +74,8 @@ const respond = (req, res) =>
 module.exports = express()
   .use(logger)
   .use(fileAssets)
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
   .use(addStoreToRequestPipeLine)
+  .use('/api', router)
   .use(respond)

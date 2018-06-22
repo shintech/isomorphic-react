@@ -3,24 +3,26 @@ import { createStore, applyMiddleware } from 'redux'
 
 const clientLogger = store => next => action => {
   let result
-
-  console.log('test client')
-
-  result = result.next()
-
+  console.groupCollapsed('dispatching', action.type)
+  console.log('prev state', store.getState())
+  console.log('action', action)
+  result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd()
   return result
 }
 
 const serverLogger = store => next => action => {
-  console.log('dispatching server action')
+  console.log(`dispatching server action ${action.type}...`)
   return next(action)
 }
 
-const middleWare = server =>
+const middleWare = server => [
   (server) ? serverLogger : clientLogger
+]
 
 const storeFactory = (server = false, initialState = {}) =>
-  applyMiddleware(middleWare)(createStore)(
+  applyMiddleware(...middleWare(server))(createStore)(
     reducers,
     initialState
   )

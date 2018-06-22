@@ -1,11 +1,9 @@
 const home = (state = {}, action) => {
   switch (action.type) {
-    case 'NEW_ACTION':
-      const active = !state.active
-
+    case 'INCREMENT':
+      let incremental = state.incremental + 1
       return {
-        active: active,
-        json: action.payload
+        incremental: incremental
       }
 
     default:
