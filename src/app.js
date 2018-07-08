@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
-import App from './components/App.js'
+import AppContainer from './containers/AppContainer'
 import storeFactory from './store'
 import bodyParser from 'body-parser'
 import router from './router'
@@ -21,25 +21,25 @@ const logger = (req, res, next) => {
   next()
 }
 
-const addStoreToRequestPipeLine = (req, res, next) => {
-  req.store = serverStore
-  next()
-}
-
 const makeClientStoreFrom = store => url =>
   ({
     store: storeFactory(false, store.getState()),
     url
   })
 
+const addStoreToRequestPipeline = (req, res, next) => {
+  req.store = serverStore
+  next()
+}
+
 const renderComponentsToHTML = ({ url, store }) =>
   ({
     state: store.getState(),
     // css: defaultStyles,
     html: renderToString(
-      <Provider store={store}>
+      <Provider store={store} key='provider'>
         <StaticRouter location={url} context={{}}>
-          <App />
+          <AppContainer />
         </StaticRouter>
       </Provider>
     )
@@ -76,6 +76,6 @@ module.exports = express()
   .use(fileAssets)
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
-  .use(addStoreToRequestPipeLine)
+  .use(addStoreToRequestPipeline)
   .use('/api', router)
   .use(respond)
