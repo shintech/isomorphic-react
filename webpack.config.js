@@ -1,18 +1,24 @@
 var webpack = require('webpack')
 var path = require('path')
-
-// const environment = process.env['NODE_ENV'] || 'development'
-const target = process.env['TARGET'] || 'http://localhost:8000/'
-
-// const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-//   template: '!!pug-loader!' + path.join(__dirname, 'views', 'template.pug')
-// })
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.scss$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
+  },
   mode: 'development',
   entry: './index-client.js',
   output: {
-    path: path.join(__dirname, 'public', 'js'),
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },
   module: {
@@ -22,31 +28,29 @@ module.exports = {
         enforce: 'pre',
         exclude: [/node_modules/, path.join(__dirname, 'dist')],
         use: ['babel-loader']
+      },
+      {
+        test: /\.scss/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // publicPath: '../'
+            }
+          },
+          'css-loader'
+        ]
       }
     ]
   },
 
   devtool: 'source-map',
 
-  devServer: {
-    disableHostCheck: true,
-    host: '0.0.0.0',
-    inline: true,
-    hot: true,
-    port: 8081,
-    proxy: {
-      '/api': {
-        target: target,
-        secure: false
-      },
-      '/public': {
-        target: target,
-        secure: false
-      }
-    }
-  },
-
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       _: 'lodash',
@@ -63,9 +67,3 @@ module.exports = {
     })
   ]
 }
-
-// if (environment === 'development') {
-//   config.plugins.push(HtmlWebpackPluginConfig)
-//   config.plugins.push(new webpack.NamedModulesPlugin())
-//   config.plugins.push(new webpack.HotModuleReplacementPlugin())
-// }

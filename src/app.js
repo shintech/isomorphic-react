@@ -4,11 +4,16 @@ import { Provider } from 'react-redux'
 import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
+import fs from 'fs'
 import AppContainer from './containers/AppContainer'
 import storeFactory from './store'
 import bodyParser from 'body-parser'
 import router from './router'
 import initialState from './initialState'
+
+const staticCSS = fs.readFileSync(
+  path.join(__dirname, '../public/styles.css')
+)
 
 const fileAssets = express.static(
   path.join(__dirname, '../public')
@@ -50,14 +55,15 @@ const buildHTMLPage = ({html, state}) => `
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Universal Color Organizer</title>
+    <title>Universal React</title>
+    <style>${staticCSS}</style> 
   </head>
   <body>
     <div id="react-container">${html}</div>
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(state)}
     </script>
-    <script src="js/bundle.js"></script>
+    <script src="bundle.js"></script>
   </body>
 </html>
 `

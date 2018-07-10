@@ -1,0 +1,66 @@
+@import 'navbar.scss';
+
+@background: lighten(pink, 5%);
+
+@nav-background: darken(@background, 70%);
+@nav-hover: darken(@nav-background, 10%);
+@nav-text: lighten(@nav-background, 100%);
+@nav-active: lighten(@nav-background, 27%);
+@nav-select: red;
+
+@error: red;
+@success: green;
+
+@main-text: black;
+@main-accent: lighten(@background, 10%);
+
+.root {
+  width: 100%;
+  display: grid;
+  grid-gap: 5px;
+  margin: 0;
+  grid-template-columns:  auto;
+  grid-template-rows: auto auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.message-block {
+  color: @success;
+}
+
+.has-error {
+  color: @error;
+}
+
+body { 
+  margin: 0;
+  background-color: @background
+}
+
+.star {
+cursor: pointer;
+height: 25px;
+width: 25px;
+margin: 2px;
+float: left;
+background-color: grey;
+clip-path: polygon(
+  50% 0%,
+  63% 38%,
+  100% 38%,
+  69% 59%,
+  82% 100%,
+  50% 75%,
+  18% 100%,
+  31% 59%,
+  0% 38%,
+  37% 38%
+  );
+}
+
+.star.selected {
+background-color: red;
+}
