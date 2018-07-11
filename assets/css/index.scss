@@ -1,18 +1,5 @@
-@import 'navbar.scss';
-
-@background: lighten(pink, 5%);
-
-@nav-background: darken(@background, 70%);
-@nav-hover: darken(@nav-background, 10%);
-@nav-text: lighten(@nav-background, 100%);
-@nav-active: lighten(@nav-background, 27%);
-@nav-select: red;
-
-@error: red;
-@success: green;
-
-@main-text: black;
-@main-accent: lighten(@background, 10%);
+@import 'master';
+@import 'navbar';
 
 .root {
   width: 100%;
@@ -28,16 +15,16 @@
 }
 
 .message-block {
-  color: @success;
+  color: $success;
 }
 
 .has-error {
-  color: @error;
+  color: $error;
 }
 
 body { 
   margin: 0;
-  background-color: @background
+  background-color: $background
 }
 
 .star {

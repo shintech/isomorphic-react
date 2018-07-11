@@ -1,3 +1,5 @@
+@import 'master';
+
 nav {
   grid-column: 1;
   grid-row: 1;
@@ -6,13 +8,13 @@ nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: @nav-background;
+  background-color: $nav-background;
 }
 
 nav li a {
   float: left;
   display: block;
-  color: @nav-text;
+  color: $nav-text;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -24,9 +26,9 @@ nav li a.navbar-menu-button {
 }
 
 nav li a:hover {
-  background-color: @nav-hover;
+  background-color: $nav-hover;
   text-decoration: none;
-  color: darken(@nav-text, 10%);
+  color: darken($nav-text, 10%);
 }
 
 
@@ -40,7 +42,7 @@ nav li a:hover {
   font-size: 16px;
   border: none;
   outline: none;
-  color: @nav-text;
+  color: $nav-text;
   padding: 14px 16px;
   background-color: inherit;
   cursor: pointer;
@@ -50,13 +52,13 @@ nav li a:hover {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: @nav-select;
+  background-color: $nav-select;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: lighten(@background, 5%);
+  background-color: lighten($background, 5%);
   min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -64,7 +66,7 @@ nav li a:hover {
 
 .dropdown-content a {
   float: none;
-  color: @main-text;
+  color: $main-text;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -73,7 +75,7 @@ nav li a:hover {
 }
 
 .dropdown-content a:hover {
-  background-color: darken(@background, 15%);
+  background-color: darken($background, 15%);
 }
 
 .dropdown:hover .dropdown-content {
@@ -81,12 +83,12 @@ nav li a:hover {
 }
 
 .active {
-  background-color: @nav-active;
-  color: @main-text;
+  background-color: $nav-active;
+  color: $main-text;
 }
 
 .active:hover {
-  background-color: darken(@nav-active, 10%);
+  background-color: darken($nav-active, 10%);
   text-decoration: none;
   cursor: default;  
 }

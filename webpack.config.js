@@ -38,7 +38,8 @@ module.exports = {
               // publicPath: '../'
             }
           },
-          'css-loader'
+          'css-loader',
+          'sass-loader'
         ]
       }
     ]
