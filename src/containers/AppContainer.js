@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import App from '../components/App.js'
 
 const mapStateToProps = (state) => {
-  return {state}
+  return state
 }
 
 const mapDispatchToProps = (dispatch) => {

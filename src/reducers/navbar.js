@@ -1,9 +1,8 @@
-const home = (state = {}, action) => {
+const navbar = (state = {}, action) => {
   switch (action.type) {
-    case 'TEST':
-      let incremental = state.incremental + 1
+    case 'CHANGE_ACTIVE_TAB':
       return {
-        incremental: incremental
+        active: action.payload
       }
 
     default:
@@ -11,4 +10,4 @@ const home = (state = {}, action) => {
   }
 }
 
-export default home
+export default navbar

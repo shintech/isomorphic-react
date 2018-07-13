@@ -5,18 +5,18 @@ import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import fs from 'fs'
-import AppContainer from './containers/AppContainer'
-import storeFactory from './store'
+import AppContainer from '../containers/AppContainer'
+import storeFactory from '../store'
 import bodyParser from 'body-parser'
 import router from './router'
 import initialState from './initialState'
 
 const staticCSS = fs.readFileSync(
-  path.join(__dirname, '../public/styles.css')
+  path.join(__dirname, '../../public/bundle.css')
 )
 
 const fileAssets = express.static(
-  path.join(__dirname, '../public')
+  path.join(__dirname, '../../public')
 )
 
 const serverStore = storeFactory(true, initialState)
@@ -59,7 +59,7 @@ const buildHTMLPage = ({html, state}) => `
     <style>${staticCSS}</style> 
   </head>
   <body>
-    <div class="root">${html}</div>
+    <div id="root">${html}</div>
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(state)}
     </script>

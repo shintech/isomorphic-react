@@ -11,10 +11,6 @@ const Navbar = ({ changeActiveTab, modal, active }) =>
       <Link className={active === '#/users' ? 'active' : null} to='/users'>users</Link>
     </li>
 
-    <li onClick={() => { changeActiveTab('#/devices') }}>
-      <Link className={active === '#/devices' ? 'active' : null} to='/devices'>devices</Link>
-    </li>
-
     <li onClick={() => { changeActiveTab('#/files') }}>
       <Link className={active === '#/files' ? 'active' : null} to='/files'>files</Link>
     </li>

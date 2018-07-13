@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import AppContainer from './src/containers/AppContainer'
 import storeFactory from './src/store'
-require('./assets/css/index.scss')
 
 const store = storeFactory(false, window.__INITIAL_STATE__)
 
@@ -19,7 +18,7 @@ hydrate(
       <AppContainer />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('react-container')
+  document.getElementById('root')
 )
 
 // alert('render complete') // eslint-disable-line

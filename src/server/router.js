@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { increment } from './actions'
+import { increment } from '../actions'
 
 const dispatchAndRespond = (req, res, action) => {
   req.store.dispatch(action())

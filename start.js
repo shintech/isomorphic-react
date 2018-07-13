@@ -1,6 +1,6 @@
 const React = require('react')
 const ignoreStyles = require('ignore-styles') // eslint-disable-line
-const app = require('./dist/app')
+const app = require('./dist/server/app')
 
 global.React = React
 
