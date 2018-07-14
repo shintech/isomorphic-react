@@ -1,7 +1,13 @@
 export const INCREMENT = 'INCREMENT'
 
-export function increment () {
+function thunk () {
   return {
     type: INCREMENT
+  }
+}
+
+export function increment () {
+  return async dispatch => {
+    dispatch(thunk())
   }
 }

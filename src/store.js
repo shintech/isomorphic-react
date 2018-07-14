@@ -1,4 +1,6 @@
 import reducers from './reducers'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise'
 import { createStore, applyMiddleware } from 'redux'
 
 const clientLogger = store => next => action => {
@@ -18,6 +20,8 @@ const serverLogger = store => next => action => {
 }
 
 const middleWare = server => [
+  promise,
+  thunk,
   (server) ? serverLogger : clientLogger
 ]
 

@@ -1,6 +1,6 @@
 const initialState = {
   home: {
-    incremental: 0
+    value: 0
   },
   navbar: {
     active: false

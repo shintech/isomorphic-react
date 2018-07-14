@@ -1,9 +1,10 @@
 const home = (state = {}, action) => {
   switch (action.type) {
     case 'INCREMENT':
-      let incremental = state.incremental + 1
+      let value = state.value + 1
+
       return {
-        incremental: incremental
+        value: value
       }
 
     default:

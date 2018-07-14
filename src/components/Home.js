@@ -1,6 +1,8 @@
-const Home = () =>
+const Home = ({ increment, value }) =>
   <div>
-    Home
+    <h3>Home</h3>
+    <p>{ value }</p>
+    <button onClick={() => { increment() }}>Click</button>
   </div>
 
 export default Home
