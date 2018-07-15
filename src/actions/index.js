@@ -1,8 +1,8 @@
-export const INCREMENT = 'INCREMENT'
+import C from '../constants'
 
 function thunk () {
   return {
-    type: INCREMENT
+    type: C.INCREMENT
   }
 }
 

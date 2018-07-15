@@ -2,7 +2,7 @@ import React from 'react'
 import { hydrate } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import AppContainer from './src/containers/AppContainer'
+import App from './src/components/App'
 import storeFactory from './src/store'
 
 const store = storeFactory(false, window.__INITIAL_STATE__)
@@ -15,7 +15,7 @@ window.store = store
 hydrate(
   <Provider store={store}>
     <BrowserRouter>
-      <AppContainer />
+      <App />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

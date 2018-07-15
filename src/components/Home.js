@@ -1,3 +1,6 @@
+import { connect } from 'react-redux'
+import { increment } from '../actions'
+
 const Home = ({ increment, value }) =>
   <div>
     <h3>Home</h3>
@@ -5,4 +8,18 @@ const Home = ({ increment, value }) =>
     <button onClick={() => { increment() }}>Click</button>
   </div>
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    value: state.home.value
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increment: async () => {
+      await dispatch(increment())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

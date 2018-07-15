@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
-import NavbarContainer from '../containers/NavbarContainer'
-import HomeContainer from '../containers/HomeContainer'
-import DeviceContainer from '../containers/DeviceContainer'
+import Navbar from './Navbar'
+import Home from '../components/Home'
+import DeviceList from '../components/DeviceList'
 require('../../assets/css/index.scss')
 
 const App = () => {
@@ -10,10 +10,10 @@ const App = () => {
       <Route path='/'
         component={({match, location}) => (
           <div className='app'>
-            <NavbarContainer />
+            <Navbar />
             <Switch>
-              <Route exact path='/' component={HomeContainer} />
-              <Route exact path='/devices' component={DeviceContainer} />
+              <Route exact path='/' component={Home} />
+              <Route exact path='/devices' component={DeviceList} />
             </Switch>
           </div>
         )} />

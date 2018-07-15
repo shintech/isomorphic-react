@@ -5,7 +5,7 @@ import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
 import fs from 'fs'
-import AppContainer from '../containers/AppContainer'
+import App from '../components/App'
 import storeFactory from '../store'
 import bodyParser from 'body-parser'
 import router from './router'
@@ -52,7 +52,7 @@ export default async function (options) {
       html: renderToString(
         <Provider store={store} key='provider'>
           <StaticRouter location={url} context={{}}>
-            <AppContainer />
+            <App />
           </StaticRouter>
         </Provider>
       )

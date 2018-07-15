@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const Navbar = ({ changeActiveTab, modal, active }) =>
   <nav>
@@ -31,4 +32,12 @@ Navbar.propTypes = {
   active: PropTypes.string
 }
 
-export default Navbar
+const mapStateToProps = (state) => {
+  return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

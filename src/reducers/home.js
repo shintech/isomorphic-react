@@ -1,6 +1,8 @@
+import C from '../constants'
+
 const home = (state = {}, action) => {
   switch (action.type) {
-    case 'INCREMENT':
+    case C.INCREMENT:
       let value = state.value + 1
 
       return {
