@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
 import NavbarContainer from '../containers/NavbarContainer'
 import HomeContainer from '../containers/HomeContainer'
+import DeviceContainer from '../containers/DeviceContainer'
 require('../../assets/css/index.scss')
 
 const App = () => {
@@ -11,7 +12,8 @@ const App = () => {
           <div className='app'>
             <NavbarContainer />
             <Switch>
-              <Route path='/' component={HomeContainer} />
+              <Route exact path='/' component={HomeContainer} />
+              <Route exact path='/devices' component={DeviceContainer} />
             </Switch>
           </div>
         )} />

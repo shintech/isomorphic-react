@@ -7,8 +7,8 @@ const Navbar = ({ changeActiveTab, modal, active }) =>
       <Link className={active === '#/' || active === '' ? 'active' : null} to='/'>home</Link>
     </li>
 
-    <li onClick={() => { changeActiveTab('#/users') }}>
-      <Link className={active === '#/users' ? 'active' : null} to='/users'>users</Link>
+    <li onClick={() => { changeActiveTab('#/devices') }}>
+      <Link className={active === '#/devices' ? 'active' : null} to='/devices'>devices</Link>
     </li>
 
     <li onClick={() => { changeActiveTab('#/files') }}>

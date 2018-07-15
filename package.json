@@ -1,6 +1,6 @@
 {
   "name": "universal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -13,10 +13,12 @@
     "server": "webpack-dev-server"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "express": "^4.16.3",
     "ignore-styles": "^5.0.1",
+    "pg-promise": "^8.4.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
