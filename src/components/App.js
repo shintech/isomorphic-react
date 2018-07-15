@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router-dom'
 import Navbar from './Navbar'
 import Home from '../components/Home'
 import DeviceList from '../components/DeviceList'
-require('../../assets/css/index.scss')
+require('../../assets/less/index.less')
 
 const App = () => {
   return (

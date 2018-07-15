@@ -1,4 +1,4 @@
-import C from '../constants'
+import C from '../store/constants'
 
 function thunk () {
   return {

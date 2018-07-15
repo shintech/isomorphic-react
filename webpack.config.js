@@ -35,14 +35,14 @@ module.exports = {
         })
       },
       {
-        test: /\.scss/,
+        test: /\.less/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: ['css-loader', {
             loader: 'postcss-loader',
             options: {
               plugins: () => [require('autoprefixer')]
-            }}, 'sass-loader'
+            }}, 'less-loader'
           ]
         })
       }
