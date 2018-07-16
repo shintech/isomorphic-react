@@ -1,41 +1,30 @@
 import express from 'express'
+import bodyParser from 'body-parser'
 import path from 'path'
+import fs from 'fs'
+import morgan from 'morgan'
+
 import { Provider } from 'react-redux'
 import { compose } from 'redux'
 import { StaticRouter } from 'react-router-dom'
 import { renderToString } from 'react-dom/server'
-import fs from 'fs'
+
 import App from '../components/App'
-import storeFactory from '../store'
-import bodyParser from 'body-parser'
-// import router from './router'
 import configDB from './db'
-import getInitialState from './initialState'
 import configRouter from './router'
-
-const app = express()
-
-const staticCSS = fs.readFileSync(
-  path.join(__dirname, '../../public/bundle.css')
-)
-
-const fileAssets = express.static(
-  path.join(__dirname, '../../public')
-)
-
-const db = configDB()
-
-const router = configRouter({ db })
+import storeFactory from '../store'
+import initialState from '../store/initialState'
 
 export default async function (options) {
-  let initialState = await getInitialState(db)
+  const app = express()
+  const db = configDB()
+  const router = configRouter({ db })
+
+  const fileAssets = express.static(
+    path.join(__dirname, '../../public')
+  )
 
   const serverStore = storeFactory(true, initialState)
-
-  const logger = (req, res, next) => {
-    console.log(`${req.method} request for '${req.url}'`)
-    next()
-  }
 
   const makeClientStoreFrom = store => url =>
     ({
@@ -51,7 +40,7 @@ export default async function (options) {
   const renderComponentsToHTML = ({ url, store }) =>
     ({
       state: store.getState(),
-      // css: defaultStyles,
+      css: fs.readFileSync(path.join(__dirname, '../../public/bundle.css')),
       html: renderToString(
         <Provider store={store} key='provider'>
           <StaticRouter location={url} context={{}}>
@@ -61,13 +50,13 @@ export default async function (options) {
       )
     })
 
-  const buildHTMLPage = ({html, state}) => `
+  const buildHTMLPage = ({html, state, css}) => `
   <!DOCTYPE html>
   <html>
     <head>
       <meta charset="utf-8">
       <title>Universal React</title>
-      <style>${staticCSS}</style> 
+      <style>${css}</style> 
     </head>
     <body>
       <div id="root">${html}</div>
@@ -88,7 +77,7 @@ export default async function (options) {
   const respond = (req, res) =>
     res.status(200).send(htmlResponse(req.url))
 
-  app.use(logger)
+  app.use(morgan('dev'))
     .use(fileAssets)
     .use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())

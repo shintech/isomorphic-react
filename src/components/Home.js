@@ -16,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    increment: async () => {
-      await dispatch(increment())
+    increment: () => {
+      dispatch(increment())
     }
   }
 }
