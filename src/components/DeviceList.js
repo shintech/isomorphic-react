@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Device from './Device'
+import Pagination from './Pagination'
 import { fetchDevices, toggleModal } from '../actions'
 
 class DeviceList extends React.Component {
@@ -23,6 +24,7 @@ class DeviceList extends React.Component {
             )}
           </ul>
         }
+        <Pagination />
       </div>
     )
   }

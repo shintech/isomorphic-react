@@ -49,12 +49,12 @@ export function addDeviceError (error) {
   }
 }
 
-export function fetchDevices () {
+export function fetchDevices (page) {
   return async dispatch => {
     dispatch(beginFetchDevices())
 
     try {
-      let response = await fetch('/api/devices', {
+      let response = await fetch(`/api/devices?page=${page}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -62,8 +62,8 @@ export function fetchDevices () {
       })
 
       let devices = await response.json()
-
       dispatch(fetchDevicesSuccess(devices))
+      dispatch(changePage(devices.meta, page || 1))
     } catch (err) {
       dispatch(fetchDevicesError(err))
     }
@@ -103,5 +103,13 @@ export function toggleModal (props) {
     type: C.TOGGLE_MODAL,
     template: template,
     model: model
+  }
+}
+
+export function changePage (meta, page) {
+  return {
+    type: C.CHANGE_PAGE,
+    meta: meta,
+    page: page
   }
 }
