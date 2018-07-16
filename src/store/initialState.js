@@ -3,6 +3,10 @@ export default {
     value: 0
   },
 
+  modal: {
+    hidden: true
+  },
+
   devices: {
     loading: true
   }

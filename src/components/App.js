@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom'
 import Navbar from './Navbar'
 import Home from '../components/Home'
+import Modal from '../components/Modal'
 import DeviceList from '../components/DeviceList'
 import Whoops404 from '../components/Whoops404'
 require('../../assets/less/index.less')
@@ -17,6 +18,7 @@ const App = () => {
               <Route exact path='/devices' component={DeviceList} />
               <Route component={Whoops404} />
             </Switch>
+            <Modal />
           </div>
         )} />
     </Switch>

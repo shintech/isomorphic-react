@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { toggleModal } from '../actions'
 
-const Navbar = ({ location, changeActiveTab, modal }) =>
+const Navbar = ({ location, modal }) =>
   <nav>
     <li><Link className={!location || location === '/' || location === '' ? 'active' : null} to='/'>home</Link></li>
 
@@ -21,8 +22,8 @@ const Navbar = ({ location, changeActiveTab, modal }) =>
   </nav>
 
 Navbar.propTypes = {
-  changeActiveTab: PropTypes.func,
-  modal: PropTypes.func
+  modal: PropTypes.func,
+  location: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
@@ -30,7 +31,14 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    modal: () => {
+      dispatch(toggleModal({
+        model: null,
+        template: 'form'
+      }))
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
