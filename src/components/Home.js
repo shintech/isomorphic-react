@@ -8,18 +8,14 @@ const Home = ({ increment, value }) =>
     <button onClick={() => { increment() }}>Click</button>
   </div>
 
-const mapStateToProps = (state) => {
-  return {
+export default connect(
+  state => ({
     value: state.home.value
-  }
-}
+  }),
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+  dispatch => ({
     increment: () => {
       dispatch(increment())
     }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+  })
+)(Home)

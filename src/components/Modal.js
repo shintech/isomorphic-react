@@ -31,20 +31,16 @@ Modal.propTypes = {
   hidden: PropTypes.bool.isRequired
 }
 
-const mapStateToProps = (state) => {
-  return {
+export default connect(
+  state => ({
     hidden: state.modal.hidden,
     template: state.modal.template,
     model: state.modal.model
-  }
-}
+  }),
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+  dispatch => ({
     modal: (props) => {
       dispatch(toggleModal(props))
     }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Modal)
+  })
+)(Modal)

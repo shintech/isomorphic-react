@@ -26,19 +26,17 @@ Navbar.propTypes = {
   location: PropTypes.string
 }
 
-const mapStateToProps = (state) => {
-  return state
-}
+export default connect(
+  state => ({
+    state
+  }),
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+  dispatch => ({
     modal: () => {
       dispatch(toggleModal({
         model: null,
         template: 'form'
       }))
     }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
+  })
+)(Navbar)

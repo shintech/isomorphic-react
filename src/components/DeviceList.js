@@ -28,15 +28,13 @@ class DeviceList extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+export default connect(
+  state => ({
     devices: state.devices,
     meta: state.meta
-  }
-}
+  }),
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+  dispatch => ({
     fetchDevices: () => {
       dispatch(fetchDevices())
     },
@@ -44,7 +42,5 @@ const mapDispatchToProps = (dispatch) => {
     modal: (model) => {
       dispatch(toggleModal({ template: 'device', model: model }))
     }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeviceList)
+  })
+)(DeviceList)

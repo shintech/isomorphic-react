@@ -46,14 +46,12 @@ const AddDeviceForm = (props) => {
 
   /* eslint-enable */
 }
-const mapStateToProps = (state) => {
-  return {
+export default connect(
+  state => ({
     devices: state.devices
-  }
-}
+  }),
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+  dispatch => ({
     createNewDevice: (attrs, devices) => {
       dispatch(addDevice(attrs, devices))
     },
@@ -64,7 +62,5 @@ const mapDispatchToProps = (dispatch) => {
         model: null
       }))
     }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddDeviceForm)
+  })
+)(AddDeviceForm)
