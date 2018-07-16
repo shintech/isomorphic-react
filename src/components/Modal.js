@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { toggleModal } from '../actions'
 import SingleDevice from '../components/SingleDevice'
+import AddDeviceForm from '../components/AddDeviceForm'
 
 const Modal = ({ hidden, modal, template, model }) => {
   if (hidden || !template) return <div className='hidden' />
@@ -9,6 +10,7 @@ const Modal = ({ hidden, modal, template, model }) => {
   let html
 
   if (template === 'device') html = <SingleDevice device={model} />
+  if (template === 'form') html = <AddDeviceForm />
 
   return (
     <div className='modal-container'>
@@ -19,8 +21,6 @@ const Modal = ({ hidden, modal, template, model }) => {
         </div>
         <div className='modal-body'>
           {html}
-
-          <button onClick={modal}>Close</button>
         </div>
       </div>
     </div>

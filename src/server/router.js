@@ -20,7 +20,7 @@ export default function (options) {
 
   router.route('/devices')
     .get(devices(options).read.all)
-    // .post(devices(options).create)
+    .post(devices(options).create)
 
   router.route('/devices/:id')
     .get(devices(options).read.one)

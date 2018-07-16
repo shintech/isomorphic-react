@@ -13,6 +13,46 @@ export function increment () {
   }
 }
 
+export function addDevice (device, devices) {
+  return async dispatch => {
+    let payload
+
+    try {
+      let result = await fetch('/api/devices', {
+        body: JSON.stringify(device),
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+
+      payload = await result.json()
+    } catch (err) {
+      throw new Error(err.message)
+    }
+
+    dispatch({
+      type: C.ADD_DEVICE,
+      payload,
+      devices
+    })
+  }
+}
+
+export function addDeviceSuccess (message) {
+  return {
+    type: C.ADD_DEVICE_SUCCESS,
+    payload: message
+  }
+}
+
+export function addDeviceError (error) {
+  return {
+    type: C.ADD_DEVICE_ERROR,
+    payload: error
+  }
+}
+
 export function fetchDevices () {
   return async dispatch => {
     dispatch(beginFetchDevices())

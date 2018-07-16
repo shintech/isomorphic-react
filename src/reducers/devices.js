@@ -27,6 +27,22 @@ const devices = (state = {}, action) => {
         error: null
       }
 
+    case C.ADD_DEVICE:
+      const retval = [
+        {
+          id: action.payload.id,
+          serial: action.payload.serial,
+          model: action.payload.model,
+          manufacturer: action.payload.manufacturer
+        },
+        ...action.devices
+      ]
+
+      return {
+        payload: retval,
+        loading: false
+      }
+
     default:
       return state
   }
