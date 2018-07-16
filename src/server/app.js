@@ -75,8 +75,28 @@ export default async function (options) {
     makeClientStoreFrom(serverStore)
   )
 
-  const respond = (req, res) =>
-    res.status(200).send(htmlResponse(req.url))
+  const respond = (req, res, next) =>
+    res.status(200)
+      .format({
+        html: () => {
+          res.send(htmlResponse(req.url))
+        }
+      })
+
+  const whoops404 = (req, res, next) =>
+    res.status(400)
+      .format({
+        json: () => {
+          res.send({
+            url: req.url,
+            status: res.statusCode,
+            message: `${res.statusCode}: Not found...`
+          })
+        },
+        html: () => {
+          next()
+        }
+      })
 
   app.use(morgan('dev'))
     .use(fileAssets)
@@ -85,6 +105,7 @@ export default async function (options) {
     .use(bodyParser.json())
     .use(addStoreToRequestPipeline)
     .use('/api', router)
+    .use(whoops404)
     .use(respond)
 
   return app
