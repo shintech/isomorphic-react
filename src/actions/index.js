@@ -59,3 +59,13 @@ export function fetchDevicesError (error) {
     loading: false
   }
 }
+
+export function toggleModal (props) {
+  const { model, template } = props
+
+  return {
+    type: C.TOGGLE_MODAL,
+    template: template,
+    model: model
+  }
+}

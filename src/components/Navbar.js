@@ -2,19 +2,13 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const Navbar = ({ changeActiveTab, modal, active }) =>
+const Navbar = ({ location, changeActiveTab, modal }) =>
   <nav>
-    <li onClick={() => { changeActiveTab('#/') }}>
-      <Link className={active === '#/' || active === '' ? 'active' : null} to='/'>home</Link>
-    </li>
+    <li><Link className={!location || location === '/' || location === '' ? 'active' : null} to='/'>home</Link></li>
 
-    <li onClick={() => { changeActiveTab('#/devices') }}>
-      <Link className={active === '#/devices' ? 'active' : null} to='/devices'>devices</Link>
-    </li>
+    <li><Link className={location === '/devices' ? 'active' : null} to='/devices'>devices</Link></li>
 
-    <li onClick={() => { changeActiveTab('#/files') }}>
-      <Link className={active === '#/files' ? 'active' : null} to='/files'>files</Link>
-    </li>
+    <li><Link className={location === '/files' ? 'active' : null} to='/files'>files</Link></li>
 
     <div className='dropdown'>
       <button className='dropbtn'>actions &middot;</button>
@@ -28,8 +22,7 @@ const Navbar = ({ changeActiveTab, modal, active }) =>
 
 Navbar.propTypes = {
   changeActiveTab: PropTypes.func,
-  modal: PropTypes.func,
-  active: PropTypes.string
+  modal: PropTypes.func
 }
 
 const mapStateToProps = (state) => {

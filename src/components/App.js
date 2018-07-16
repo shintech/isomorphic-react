@@ -10,7 +10,7 @@ const App = () => {
       <Route path='/'
         component={({match, location}) => (
           <div className='app'>
-            <Navbar />
+            <Navbar location={location.pathname} />
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/devices' component={DeviceList} />

@@ -3,10 +3,6 @@ export default {
     value: 0
   },
 
-  navbar: {
-    active: false
-  },
-
   devices: {
     loading: true
   }
