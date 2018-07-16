@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import path from 'path'
 import fs from 'fs'
 import morgan from 'morgan'
+import favicon from 'serve-favicon'
 
 import { Provider } from 'react-redux'
 import { compose } from 'redux'
@@ -79,6 +80,7 @@ export default async function (options) {
 
   app.use(morgan('dev'))
     .use(fileAssets)
+    .use(favicon(path.join('public', 'images', 'favicon.png')))
     .use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())
     .use(addStoreToRequestPipeline)
