@@ -8,9 +8,10 @@ import fs from 'fs'
 import App from '../components/App'
 import storeFactory from '../store'
 import bodyParser from 'body-parser'
-import router from './router'
+// import router from './router'
 import configDB from './db'
 import getInitialState from './initialState'
+import configRouter from './router'
 
 const app = express()
 
@@ -23,6 +24,8 @@ const fileAssets = express.static(
 )
 
 const db = configDB()
+
+const router = configRouter({ db })
 
 export default async function (options) {
   let initialState = await getInitialState(db)

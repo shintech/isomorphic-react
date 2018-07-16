@@ -8,12 +8,14 @@ const dispatchAndRespond = (req, res, action) => {
 
 const router = Router()
 
-router.get('/state', (req, res) =>
-  res.status(200).json(req.store.getState())
-)
+export default function (options) {
+  router.get('/state', (req, res) =>
+    res.status(200).json(req.store.getState())
+  )
 
-router.post('/increment', (req, res) =>
-  dispatchAndRespond(req, res, increment)
-)
+  router.post('/increment', (req, res) =>
+    dispatchAndRespond(req, res, increment)
+  )
 
-export default router
+  return router
+}
