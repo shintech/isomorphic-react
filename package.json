@@ -1,6 +1,6 @@
 {
   "name": "universal",
-  "version": "0.2.15",
+  "version": "0.3.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -17,6 +17,7 @@
     "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "express": "^4.16.3",
+    "griddle-react": "^1.13.1",
     "ignore-styles": "^5.0.1",
     "morgan": "^1.9.0",
     "pg-promise": "^8.4.5",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "1.6.0",
@@ -66,6 +68,9 @@
       "fetch",
       "React",
       "__INITIAL_STATE__"
+    ],
+    "ignore": [
+      "/src/components/CustomTableComponent.js"
     ]
   },
   "engines": {

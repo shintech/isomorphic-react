@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Griddle, { plugins } from 'griddle-react'
 import Device from './Device'
-import Pagination from './Pagination'
+import CustomTableBody from './CustomTableBody'
+import CustomTableComponent from './CustomTableComponent'
 import { fetchDevices, toggleModal } from '../actions'
 
 class DeviceList extends React.Component {
@@ -13,20 +15,32 @@ class DeviceList extends React.Component {
 
   render () {
     const { payload, loading } = this.props.devices
-    const { modal } = this.props
+    // const { modal } = this.props
 
     return (
       <div className='devices'>
         {(loading) ? <div className='loading'><h3>Loading...</h3></div>
-          : <ul className='content-list'>
-            {payload.map(device =>
-              <Device onClick={() => { modal(device) }} key={device.id} {...device} />
-            )}
-          </ul>
+          : <Griddle data={payload} plugins={[plugins.LocalPlugin]} styleConfig={styleConfig}
+            components={{
+              Row: Device,
+              TableContainer: CustomTableComponent,
+              TableBody: CustomTableBody
+            }} />
         }
-        <Pagination />
       </div>
     )
+  }
+}
+
+const styleConfig = {
+  icons: {
+    TableHeadingCell: {
+      sortDescendingIcon: <small>(desc)</small>,
+      sortAscendingIcon: <small>(asc)</small>
+    }
+  },
+  classNames: {
+    Row: 'row-class'
   }
 }
 

@@ -7,13 +7,14 @@ export default function (options) {
     all: async function (req, res) {
       let response, meta, status
       let pageSize = 6
-      let page = parseInt(req.query.page) || 1
+      // let page = parseInt(req.query.page) || 1
 
-      let offset = (page !== 1) ? (page - 1) * pageSize : 0
+      // let offset = (page !== 1) ? (page - 1) * pageSize : 0
       options.startTime = Date.now()
 
       try {
-        let query = `select count(*) over() total_count, * from devices order by id desc offset ${offset} fetch next ${pageSize} rows only;`
+        let query = 'select * from devices order by id desc'
+        // let query = `select count(*) over() total_count, * from devices order by id desc offset ${offset} fetch next ${pageSize} rows only;`
 
         response = await db.any(query)
         let count = response[0].total_count

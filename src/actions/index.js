@@ -63,7 +63,7 @@ export function fetchDevices (page) {
 
       let devices = await response.json()
       dispatch(fetchDevicesSuccess(devices))
-      dispatch(changePage(devices.meta, page || 1))
+      // dispatch(changePage(devices.meta, page || 1))
     } catch (err) {
       dispatch(fetchDevicesError(err))
     }

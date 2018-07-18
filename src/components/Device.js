@@ -1,10 +1,12 @@
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { plugins } from 'griddle-react'
 
-const Device = ({ serial = 'NA', model = '[unavailable]', manufacturer = 'NA', onClick }) =>
-  <li className='content-view' onClick={onClick}>
-    <span className='device-serial'>{ serial }</span>
-    <span className='device-manufacturer'>{ manufacturer }</span>
-    <span className='device-model'>{ model }</span>
+const Device = ({ modal, rowData }) =>
+  <li className='content-view'>
+    <span className='device-serial'>{ rowData.serial }</span>
+    <span className='device-manufacturer'>{ rowData.manufacturer }</span>
+    <span className='device-model'>{ rowData.model }</span>
   </li>
 
 Device.propTypes = {
@@ -13,4 +15,8 @@ Device.propTypes = {
   model: PropTypes.string.isRequired
 }
 
-export default Device
+export default connect(
+  (state, props) => ({
+    rowData: plugins.LocalPlugin.selectors.rowDataSelector(state, props)
+  })
+)(Device)

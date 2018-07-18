@@ -17,7 +17,14 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        use: ['babel-loader', 'standard-loader']
+        use: ['babel-loader', {
+          loader: 'standard-loader',
+          options: {
+            error: false,
+            snazzy: true,
+            parser: 'babel-eslint'
+          }
+        }]
       },
       {
         test: /\.css$/,
