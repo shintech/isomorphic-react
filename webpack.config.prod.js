@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var path = require('path')
 
 module.exports = {
@@ -62,13 +63,26 @@ module.exports = {
 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
+        NODE_ENV: JSON.stringify('production')
       }
     }),
 
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      warnings: false,
+      mangle: false
+    }),
+
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.optimize\.css$/g,
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: {discardComments: {removeAll: true}},
+      canPrint: true
+    }),
+
     new webpack.LoaderOptionsPlugin({
-      minimize: false,
-      debug: true,
+      minimize: true,
+      debug: false,
       options: {
         babel: {
           babelrc: true

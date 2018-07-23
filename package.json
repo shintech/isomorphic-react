@@ -1,10 +1,10 @@
 {
   "name": "universal",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build:client": "webpack --config ./webpack.config.js/",
+    "build:client": "webpack --config ./webpack.config.prod.js/",
     "build:watch:client": "webpack --config ./webpack.config.js/ --watch --progress",
     "build:server": "babel ./src -d dist",
     "build:watch:server": "babel ./src -d dist --watch",
