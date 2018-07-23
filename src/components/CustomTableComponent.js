@@ -6,7 +6,7 @@ const CustomTableComponent = OriginalComponent => class CustomTableComponent ext
     components: PropTypes.object
   }
 
-  render() {
+  render () {
     return <this.context.components.TableBody />
   }
 }
