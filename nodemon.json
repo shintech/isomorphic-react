@@ -1,5 +1,5 @@
 {
   "watch": ["dist", "start.js"],
-  "ignore": ["dist/frontend"],
+  "ignore": [],
   "ext": "js,json"
 }

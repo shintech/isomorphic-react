@@ -54,7 +54,7 @@ export function fetchDevices (page) {
     dispatch(beginFetchDevices())
 
     try {
-      let response = await fetch(`/api/devices?page=${page}`, {
+      let response = await fetch(`/api/devices`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

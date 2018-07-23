@@ -1,16 +1,16 @@
 {
   "name": "universal",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node start.js",
-    "dev": "NODE_ENV=development PORT=8000 TZ='America/Chicago' nodemon start.js",
-    "test": "NODE_ENV=test PORT=8001 TZ='America/Chicago' mocha dist/test -t 10000",
-    "build": "babel -d dist src",
-    "watch": "babel --watch -d dist src --ignore src/frontend | ts '[%Y-%m-%d %H:%M:%S]'",
-    "webpack": "webpack --watch --progress",
-    "server": "webpack-dev-server"
+    "build:client": "webpack --config ./webpack.config.js/",
+    "build:watch:client": "webpack --config ./webpack.config.js/ --watch --progress",
+    "build:server": "babel ./src -d dist",
+    "build:watch:server": "babel ./src -d dist --watch",
+    "start:dev": "NODE_ENV='development' parallelshell 'npm run build:watch:server' 'npm run build:watch:client' 'nodemon ./start.js'",
+    "build:prod": "npm run build:server && npm run build:client",
+    "start": "npm run build:prod && NODE_ENV=production node ./start.js"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -43,6 +43,7 @@
     "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "optimize-css-assets-webpack-plugin": "3.2.0",
+    "parallelshell": "^3.0.2",
     "postcss-loader": "2.0.6",
     "standard": "^11.0.1",
     "standard-loader": "^6.0.1",

@@ -5,13 +5,16 @@ var path = require('path')
 
 module.exports = {
   entry: './index-client.js',
+
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
     publicPath: 'assets',
     sourceMapFilename: 'bundle.js.map'
   },
-  devtool: '#source-map',
+
+  devtool: 'inline-source-map',
+
   module: {
     rules: [
       {
@@ -26,6 +29,7 @@ module.exports = {
           }
         }]
       },
+
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -38,6 +42,7 @@ module.exports = {
           ]
         })
       },
+
       {
         test: /\.less/,
         loader: ExtractTextPlugin.extract({
@@ -52,6 +57,7 @@ module.exports = {
       }
     ]
   },
+
   plugins: [
     new ExtractTextPlugin('bundle.css'),
     new webpack.DefinePlugin({
@@ -80,4 +86,12 @@ module.exports = {
       }
     })
   ]
+
+  // devServer: {
+  //   disableHostCheck: true,
+  //   host: '0.0.0.0',
+  //   inline: true,
+  //   hot: true,
+  //   port: 8081
+  // },
 }
