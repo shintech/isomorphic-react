@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { increment } from '../actions'
+import { home } from '../actions'
 
 const Home = ({ increment, value }) =>
   <div>
@@ -15,7 +15,7 @@ export default connect(
 
   dispatch => ({
     increment: () => {
-      dispatch(increment())
+      dispatch(home.increment())
     }
   })
 )(Home)

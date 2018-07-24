@@ -13,8 +13,6 @@ module.exports = {
     sourceMapFilename: 'bundle.js.map'
   },
 
-  devtool: 'inline-source-map',
-
   module: {
     rules: [
       {

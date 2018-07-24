@@ -4,7 +4,7 @@ import Griddle, { plugins } from 'griddle-react'
 import Device from './Device'
 import CustomTableBody from './CustomTableBody'
 import CustomTableComponent from './CustomTableComponent'
-import { fetchDevices, toggleModal } from '../actions'
+import { devices } from '../actions'
 
 class DeviceList extends React.Component {
   componentDidMount () {
@@ -52,11 +52,11 @@ export default connect(
 
   dispatch => ({
     fetchDevices: () => {
-      dispatch(fetchDevices())
+      dispatch(devices.fetchDevices())
     },
 
     modal: (model) => {
-      dispatch(toggleModal({ template: 'device', model: model }))
+      dispatch(devices.toggleModal({ template: 'device', model: model }))
     }
   })
 )(DeviceList)
